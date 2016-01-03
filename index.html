@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./node_modules/angular-ui-router.min.js"></script>
+    <script>
+        var myApp = angular.module('app',['ui.router'])
+        myApp.config(function($stateProvider, $urlRouterProvider) {
+  //
+  // For any unmatched url, redirect to /state1
+  $urlRouterProvider.otherwise("/state1");
+  //
+  // Now set up the states
+  $stateProvider
+    .state('signup', {
+      url: "/signup",
+      templateUrl: "about.html"
+    })
+        });
+    </script>
+</head>
+<body>
+    <h1>Hello Sign in</h1>
+    <a ui-sref="state1">Sign-Up</a>
+</body>
+</html>

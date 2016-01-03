@@ -1,0 +1,17 @@
+{
+  "name": "Mean",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-ui-router": "^1.0.0-alpha0",
+    "express": "^4.13.3",
+    "path": "^0.12.7"
+  }
+}
