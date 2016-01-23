@@ -5,13 +5,20 @@
     <title>home</title>
     <script src="./node_modules/angular/angular.min.js"></script>
     <script src="./node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="./node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="./bower_components/firebase/firebase.js"></script>
+    <script src="./bower_components/angularfire/dist/angularfire.js"></script>
     <script src="./app.routes.js"></script>
     <script src="./script/signin.js"></script>
     <script src="./script/signup.js"></script>
+    <script src="./script/welcome.js"></script>
+    <script src="./script/addUsers.js"></script>
 </head>
 <body ng-app="app">
 <div ng-controller="meanCtrl">
+    <button style="float: right " ng-click="signOut()" ng-if="signOutButton">signout</button>
     <h1>Hello MEAN Demo</h1>
+    
     <div ui-view></div>
 </div>
 </body>

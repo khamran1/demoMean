@@ -1,11 +1,20 @@
 <div>
+    <div ng-repeat="user in alluser">
+        {{user.username}}
+    </div>
+
     <h3>Hello Sign-in</h3>
 
-    <form method="post" action="/insert" ng-submit="signin()">
-        Username: <input type="text" ng-model="user.name" placeholder="username"/> <br/><br/>
-        Password: <input type="text" ng-model="user.pass" placeholder="password"/><br/><br/>
-        age: <input type="text" ng-model="user.age" placeholder="password"/><br/><br/>
+    <form method="post" ng-submit="signin(user)">
+        Username:
+        <input type="text" ng-model="user.username" placeholder="username" />
+        <br/>
+        <br/> Password:
+        <input type="password" ng-model="user.pass" placeholder="password" />
+        <br/>
+        <br/>
+        <p ng-show="signinErr" style="color:red">Wrong credentials click here to <a ng-click="signUp()">Signup here</a></p>
+        <!--age: <input type="text" ng-model="user.age" placeholder="password"/><br/><br/>-->
         <button type="submit">Add</button>
     </form>
 </div>
-
