@@ -13,17 +13,17 @@ var signinSchema = new mongoose.Schema({
     password: String,
     age: Number,
     email: String,
-    company:[],
-    role:String,
+    company: [],
+    role: String,
     date: { type: Date, default: Date.now },
     token: String
 })
 
 var companySchema = new mongoose.Schema({
-    name:String,
-    addedBy:String,
+    name: String,
+    addedBy: String,
     date: { type: Date, default: Date.now },
-    users:[]
+    users: []
 })
 
 var dataModel = mongoose.model('user', signinSchema);
@@ -86,8 +86,8 @@ app.post('/signup', (req, res) => {
         email: req.body.email,
         date: (new Date().getTime()),
         token: req.body.token,
-        company:[],
-        role:'Admin'
+        company: [],
+        role: 'Admin'
     });
     user.save(function(err, data) {
         if (err) {
@@ -95,8 +95,9 @@ app.post('/signup', (req, res) => {
         }
         else {
             console.log(data)
+            res.json(data)
+
         }
-        res.json(data)
     })
 
 });
@@ -105,11 +106,10 @@ app.post('/signup', (req, res) => {
 app.post('/addCompany', (req, res) => {
     // var Animal = mongoose.model('Animal', AnimalSchema);
     var companyAdd = new companyModel({
-        name:req.body.name,
-        addedBy:req.body.uid,
-        date:new Date(),
-        users:[]
-        
+        name: req.body.name,
+        addedBy: req.body.uid,
+        date: new Date(),
+        users: []
     });
     companyAdd.save(function(err, data) {
         if (err) {
@@ -117,11 +117,56 @@ app.post('/addCompany', (req, res) => {
         }
         else {
             console.log(data)
+            return res.json(data)
         }
-        res.json(data)
+
     })
 
 });
+//get company
+app.get('/addCompany', function(req, res) {
+    companyModel.find(function(err, data) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            console.log(data)
+            return res.json(data)
+        }
+    })
+})
+
+
+//add company to users array
+app.post('/updateUserArr', function(req, res) {
+    signinSchema.findOne({ _id: req.body.userId }, function(err, data) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            if (data != null) {
+                signinSchema.update({ company: (req.body.companyId) })
+            }
+        }
+
+    })
+});
+
+app.post('/addtousersarr', function(req, res) {
+    dataModel.update(
+        { _id: req.body.userId },
+        { $push: { company: req.body.companyId } },
+        function(err, data) {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                console.log(data)
+                return res.json(data)
+            }
+        }
+    )
+})
 
 
 //route to get signin data

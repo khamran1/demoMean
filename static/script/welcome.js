@@ -3,7 +3,8 @@ angular.module('app.welcome', [])
         $scope.userId = decodeURIComponent($stateParams.id);
         $scope.token = sessionStorage.token;
         $scope.getObj = null;
-        $scope.currentUser = '';
+        $scope.currentUser = {};
+        $scope.companiesObj = {};
         // $scope.signinErr = false;
         // $scope.err.userAdding = false;
         $scope.success = false;
@@ -11,7 +12,22 @@ angular.module('app.welcome', [])
         function userLogin() {
             $http.post('/dashboard', { token: $scope.token })
                 .success(function (data) {
-                    $scope.currentUser = data;
+                    if (data == null) {
+                        sessionStorage.removeItem('token');
+                        sessionStorage.state = 'signin';
+                        $state.go('/')
+                    }
+                    else if (data != null) {
+                        $scope.currentUser = data;
+                        $http.get('/addCompany')
+                            .success(function (company) {
+                                $scope.companiesObj = company;
+                            })
+                            .error(function (err) {
+                                console.log(err);
+                            })
+                    }
+
                 })
                 .error(function (err) {
                     //alert('you are not an authorize user please login again ')
@@ -24,23 +40,29 @@ angular.module('app.welcome', [])
             $http.post('/addCompany', companyObj)
                 .success(function (data) {
                     console.log(data)
-                    $scope.success = true;
-                    $state.go('addUsers');
+                    // $scope.success = true;
+                    // $state.go('addUsers');
+                    var addCompObj = {
+                        userId: $scope.currentUser._id,
+                        companyId: data._id
+                    }
+                    $http.post('/addtousersarr', addCompObj)
+                        .success(function (data1) {
+                            console.log(data1)
+                            // $scope.success = true;
+                            // $state.go('addUsers');
+                        })
+                        .error(function (err) {
+                            console.log(err)
+                            $scope.success = false;
+                        })
                 })
                 .error(function (err) {
                     console.log(err)
                     $scope.success = false;
                 });
-                $http.post('/addCompany', companyObj)
-                .success(function (data) {
-                    console.log(data)
-                    $scope.success = true;
-                    $state.go('addUsers');
-                })
-                .error(function (err) {
-                    console.log(err)
-                    $scope.success = false;
-                })
+
+
 
         }
 
