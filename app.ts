@@ -26,8 +26,17 @@ var companySchema = new mongoose.Schema({
     users: []
 })
 
+var usersSchema = new mongoose.Schema({
+    name: String,
+    age: Number,
+    email: String,
+    role: String,
+    companies: []
+})
+
 var dataModel = mongoose.model('user', signinSchema);
 var companyModel = mongoose.model('companies', companySchema);
+var userModel = mongoose.model('companyUsers', usersSchema)
 
 //Data parser and static path
 let app = express();
@@ -138,24 +147,59 @@ app.get('/addCompany', function(req, res) {
 
 
 //add company to users array
-app.post('/updateUserArr', function(req, res) {
-    signinSchema.findOne({ _id: req.body.userId }, function(err, data) {
+app.post('/getCompanies', function(req, res) {
+    companyModel.find({ addedBy: req.body.userId }, function(err, data) {
         if (err) {
             console.log(err)
         }
         else {
             if (data != null) {
-                signinSchema.update({ company: (req.body.companyId) })
+                return res.json(data)
             }
         }
 
     })
 });
 
+//to add users in company user's array
+app.post('/addCompanyUsers', function(req, res) {
+
+    var newuser = new userModel({
+        name: req.body.name,
+        email: req.body.email
+    })
+    newuser.save(function(err, data) {
+        if (err) {
+            console.log(err)
+        } else {
+            if (data != null) {
+                  return res.json(data)
+            }
+        }
+    })
+    
+    // companyModel.update(
+    //     { _id:req.body.companyId },
+    //     {$addToSet:{users:req.body.userId}},
+    //     function(err,data){
+    //         if(err){
+    //             console.log(err)
+    //         }
+    //         else{
+    //             if(data != null){
+    //                 console.log(data)
+    //                 return res.json(data)
+    //             }
+    //         }
+    //     }
+    // )
+})
+
+
 app.post('/addtousersarr', function(req, res) {
     dataModel.update(
         { _id: req.body.userId },
-        { $push: { company: req.body.companyId } },
+        { $addToSet: { company: req.body.companyId } },
         function(err, data) {
             if (err) {
                 console.log(err)

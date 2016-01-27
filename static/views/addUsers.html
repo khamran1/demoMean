@@ -1,1 +1,24 @@
-<h3>Add Users</h3>
+
+<table>
+      <tr ng-repeat="company in addedUser">
+        <td><p>{{company.name}}</p></td>
+    </tr>
+    <tr>
+        <td><h3>Add Users</h3></td>
+    </tr>
+    <tr>
+        <td>
+            <input type="text" ng-model="user.name" placeholder="Name">
+        </td>
+        <td></td>
+        <td>
+            <input type="text" ng-model="user.email" placeholder="Email">
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+    <tr>
+        <td><button ng-click="addUser(user)">Add</button></td>
+    </tr>
+</table>

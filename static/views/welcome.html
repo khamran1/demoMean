@@ -1,14 +1,29 @@
 <h4>Welcome to Dashboard User: {{currentUser.username}}</h4>
-<h3>Add Company</h3>
 <table>
-    <tr >
-        <td><input type="text" ng-model="company.name" placeholder="company name"/></td>
-        <td><p ng-show="success" style="color: green">success</p></td>
+    <tr ng-repeat="company in companiesObj">
+        <td><button ng-click="goIntoCompany(company)">{{company.name}}</button></td>
     </tr>
-    <tr >
-        <td><p ng-show="err.userAdding">You can only add users which are signed up</p></td>
+    <tr>
+        <td>
+            <h3>Add Company</h3>
+        </td>
     </tr>
-    <tr >
-        <td><button ng-click="addCompany(company)">Add</button></td>
+    <tr>
+        <td>
+            <input type="text" ng-model="company.name" placeholder="company name" />
+        </td>
+        <td>
+            <p ng-show="success" style="color: green">success</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p ng-show="err.userAdding">You can only add users which are signed up</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button ng-click="addCompany(company)">Add</button>
+        </td>
     </tr>
 </table>

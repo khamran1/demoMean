@@ -4,7 +4,8 @@ angular.module('app.welcome', [])
         $scope.token = sessionStorage.token;
         $scope.getObj = null;
         $scope.currentUser = {};
-        $scope.companiesObj = {};
+        $scope.companiesObj = [];
+        var sessionData = JSON.parse(sessionStorage.data);
         // $scope.signinErr = false;
         // $scope.err.userAdding = false;
         $scope.success = false;
@@ -19,7 +20,7 @@ angular.module('app.welcome', [])
                     }
                     else if (data != null) {
                         $scope.currentUser = data;
-                        $http.get('/addCompany')
+                        $http.post('/getCompanies',{userId:data._id})
                             .success(function (company) {
                                 $scope.companiesObj = company;
                             })
@@ -39,7 +40,8 @@ angular.module('app.welcome', [])
             companyObj.uid = $scope.currentUser._id;
             $http.post('/addCompany', companyObj)
                 .success(function (data) {
-                    console.log(data)
+                    console.log(data);
+                    $scope.companiesObj.push(data);
                     // $scope.success = true;
                     // $state.go('addUsers');
                     var addCompObj = {
@@ -66,5 +68,9 @@ angular.module('app.welcome', [])
 
         }
 
-
+$scope.goIntoCompany = function(company){
+    sessionData.companyId = company._id
+    sessionStorage.data = JSON.stringify(sessionData);
+    $state.go('addUsers');
+}
     })

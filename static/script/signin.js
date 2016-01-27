@@ -18,6 +18,7 @@ angular.module('app.signin', [])
                         $scope.signinErr = false;
                         $scope.currMongoUser = data;
                         sessionStorage.token = data.token;
+                        sessionStorage.data = JSON.stringify({adminId: data._id});
                         if (sessionStorage.token) {
                             sessionStorage.token = data.token;
                             sessionStorage.state = 'dashboard';

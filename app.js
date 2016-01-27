@@ -17,11 +17,20 @@ var signinSchema = new mongoose.Schema({
 });
 var companySchema = new mongoose.Schema({
     name: String,
+    addedBy: String,
     date: { type: Date, default: Date.now },
     users: []
 });
+var usersSchema = new mongoose.Schema({
+    name: String,
+    age: Number,
+    email: String,
+    role: String,
+    companies: []
+});
 var dataModel = mongoose.model('user', signinSchema);
 var companyModel = mongoose.model('companies', companySchema);
+var userModel = mongoose.model('companyUsers', usersSchema);
 //Data parser and static path
 var app = express();
 //addingUsers(app);
@@ -77,8 +86,8 @@ app.post('/signup', function (req, res) {
         }
         else {
             console.log(data);
+            res.json(data);
         }
-        res.json(data);
     });
 });
 //add company
@@ -86,6 +95,7 @@ app.post('/addCompany', function (req, res) {
     // var Animal = mongoose.model('Animal', AnimalSchema);
     var companyAdd = new companyModel({
         name: req.body.name,
+        addedBy: req.body.uid,
         date: new Date(),
         users: []
     });
@@ -95,8 +105,76 @@ app.post('/addCompany', function (req, res) {
         }
         else {
             console.log(data);
+            return res.json(data);
         }
-        res.json(data);
+    });
+});
+//get company
+app.get('/addCompany', function (req, res) {
+    companyModel.find(function (err, data) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(data);
+            return res.json(data);
+        }
+    });
+});
+//add company to users array
+app.post('/getCompanies', function (req, res) {
+    companyModel.find({ addedBy: req.body.userId }, function (err, data) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            if (data != null) {
+                return res.json(data);
+            }
+        }
+    });
+});
+//to add users in company user's array
+app.post('/addCompanyUsers', function (req, res) {
+    var newuser = new userModel({
+        name: req.body.name,
+        email: req.body.email
+    });
+    newuser.save(function (err, data) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            if (data != null) {
+                return res.json(data);
+            }
+        }
+    });
+    // companyModel.update(
+    //     { _id:req.body.companyId },
+    //     {$addToSet:{users:req.body.userId}},
+    //     function(err,data){
+    //         if(err){
+    //             console.log(err)
+    //         }
+    //         else{
+    //             if(data != null){
+    //                 console.log(data)
+    //                 return res.json(data)
+    //             }
+    //         }
+    //     }
+    // )
+});
+app.post('/addtousersarr', function (req, res) {
+    dataModel.update({ _id: req.body.userId }, { $addToSet: { company: req.body.companyId } }, function (err, data) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(data);
+            return res.json(data);
+        }
     });
 });
 //route to get signin data
