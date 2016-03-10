@@ -1,0 +1,47 @@
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #map {
+        height: 100%;
+    }
+</style>
+
+<ion-view view-title="Google Map">
+    <ion-content>
+        <!--<ion-list>
+          <ion-item>Cordova : {{info}}</ion-item>
+          <ion-item>Device : {{info.Device}}</ion-item>
+          <ion-item>Manufacturer : {{info.Manu}}</ion-item>
+          <ion-item>Model : {{info.Model}}</ion-item>
+          <ion-item>Name : {{info.Name}}</ion-item>
+          <ion-item>Platform : {{info.Platform}}</ion-item>
+          <ion-item>UUID : {{info.UUID}}</ion-item>
+          <ion-item>Version : {{info.Ver}}</ion-item>
+      </ion-list>-->
+
+      <div >
+<!--
+            <div id="map"></div>-->
+      <ng-map zoom="11" center="[{{admin.latitude}}, {{admin.longitude}}]" >
+        <marker ng-repeat="ll in userLattLongg" position="[{{ll.lattitude}}, {{ll.longitude}}]" title="hello"></marker>
+        <!--<marker position="[40.72, -74.20]" title="marker" animation="Animation.DROP"></marker>
+        <marker position="[40.73, -74.19]" title="drag me" draggable="true"></marker>
+        <marker position="[40.74, -74.18]" title="how" animation="Animation.BOUNCE"></marker>
+        <marker position="[40.75, -74.17]" title="are"></marker>-->
+        <marker position="[{{admin.latitude}}, {{admin.longitude}}]" title="you"
+                icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"></marker>
+        <!--<marker position="[40.77, -74.15]" title="from"></marker>
+        <marker position="[40.78, -74.14]" title="allen"></marker>-->
+      </ng-map>
+      </div>
+<!--            <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+                <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+            </div>-->
+
+    </ion-content>
+</ion-view>

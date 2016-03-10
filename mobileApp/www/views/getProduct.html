@@ -1,0 +1,35 @@
+<ion-view view-title="Get Product">
+    <ion-content>
+
+        <div class="list">
+
+            <label class="item item-input">
+                <!--<span class="input-label">Username</span>-->
+                <input ng-model="product.name" type="text" placeholder="Product" readonly>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <!--<span class="input-label">Email</span>-->
+                <input ng-model="product.quantity" type="number" placeholder="Quantity">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <!--<span class="input-label">Email</span>-->
+                <input ng-model="product.address" type="text" placeholder="Shop Address#">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <!--<span class="input-label">Email</span>-->
+                <input ng-model="product.shopName" type="text" placeholder="Shop Name">
+            </label>
+            <p ng-show="existErr" style="color:#ff0000">Error: {{errTitle}}</p>
+            <button ng-click="getProd(sessionData)" type="submit" class="button button-full button-stable">
+                ADD
+            </button>
+            <!--<button ng-click="showMap()" type="submit" class="button button-full button-stable">
+                  MAP
+              </button>-->
+
+        </div>
+
+
+
+    </ion-content>
+</ion-view>

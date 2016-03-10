@@ -1,0 +1,28 @@
+<ion-view view-title="Signin">
+    <ion-content>
+        <div class="list">
+            <form ng-submit="signin(user)">
+            <label ng-hide="smartDevice" class="item item-input">
+                <i class="icon ion-at placeholder-icon"></i>
+                <input ng-model="user.email" type="text" placeholder="Email">
+            </label>
+                <label ng-show="smartDevice" class="item item-input">
+                    <i class="icon ion-at placeholder-icon"></i>
+                    <input ng-model="user.email" type="text" placeholder="Email">
+                </label>
+            <label class="item item-input">
+                <i class="icon ion-information placeholder-icon"></i>
+                <input ng-model="user.pass" type="password" placeholder="Password">
+            </label>
+                <p ng-show="signinErr" style="color: #ff0000">Wrong email or password</p>
+            <br>
+            <button type="submit" class="button button-full button-stable">
+                Signin
+            </button>
+            <button ui-sref="signup" class="button button-outline button-full button-stable">
+                SignUp
+            </button>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

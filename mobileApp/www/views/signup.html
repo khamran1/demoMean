@@ -1,0 +1,29 @@
+<ion-view view-title="Signup">
+    <ion-content>
+        <div class="list">
+            <form ng-submit="signup(user)">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Username</span>
+                    <input type="text" ng-model="user.name" placeholder="John">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Age</span>
+                    <input type="number" ng-model="user.age" placeholder="18+">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Email</span>
+                    <input type="text" ng-model="user.email"  placeholder="john@suhr.com">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="user.pass" placeholder="******">
+                </label>
+              <p ng-show="err" style="color: #ff0000">Error: {{errText}}</p>
+                <button type="submit" class="button button-full button-stable">
+                    Sign  up
+                </button>
+            </form>
+        </div>
+    </ion-content>
+
+    </ion-view>

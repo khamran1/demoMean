@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="./www/lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="./www/css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+  <script src="https://maps.google.com/maps/api/js"></script>
+
+    <script src="./www/lib/ionic/js/ionic.bundle.js"></script>
+    <script src="./www/lib/bower_components/firebase/firebase.js"></script>
+    <script src="./www/lib/bower_components/angularfire/dist/angularfire.js"></script>
+  <script src="https://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.min.js"></script>
+    <script src="./www/lib/ngmap/build/scripts/ng-map.min.js"></script>
+    <!--<script src="http://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js"></script>-->
+  <!--<script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCJcQqOiq8kLzMiuhtlUbrJEdTiSMNdyE&callback=initMap">
+  </script>-->
+    <script src="./www/lib/ngCordova/dist/ng-cordova.js"></script>
+
+
+    <!-- cordova script (this will be a 404 during development) -->
+
+    <script src="./www/cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="./www/js/app.js"></script>
+
+    <!--admin controller-->
+    <script src="./www/js/controller/signin.js"></script>
+    <script src="./www/js/controller/signup.js"></script>
+    <script src="./www/js/controller/welcome.js"></script>
+    <script src="./www/js/controller/addUser.js"></script>
+    <script src="./www/js/controller/googleapi.js"></script>
+    <script src="./www/js/controller/addProduct.js"></script>
+
+    <!--user's controller-->
+    <script src="./www/js/controller/welcome-user.js"></script>
+    <script src="./www/js/controller/getProduct.js"></script>
+
+    <!--service-->
+    <script src="./www/js/service/api.js"></script>
+    <script src="./www/js/service/dateTimeService.js"></script>
+    <script src="./www/js/service/loginService.js"></script>
+    <script src="./www/js/service/getIPAddress.js"></script>
+    <script src="./www/js/service/addXService.js"></script>
+
+</head>
+
+<body ng-app="app" ng-controller="mainCtrl">
+  <ion-nav-bar class="bar-dark">
+    <ion-nav-back-button class="button-clear">
+      <i class="icon ion-ios-arrow-left"></i> Back
+  <!--<h5>asd</h5>-->
+    </ion-nav-back-button>
+
+
+
+  </ion-nav-bar>
+
+  <ion-footer-bar align-title="left" class="bar-dark">
+    <div ng-hide="state == 'signin'"ng-show="state != 'signin'">
+      <!--<a style="color:#fff" ng-click="signOut()">SignOut</a>-->
+    </div>
+ <!--<a style="color:#fff" ng-click="homeCall()">Home</a>-->
+</ion-footer-bar>
+  <ion-nav-view></ion-nav-view>
+
+
+    <!--<ion-pane>
+        <ion-header-bar class="bar-stable">
+            <h1 class="title">Ionic Blank Starter</h1>
+        </ion-header-bar>
+        <ion-content>
+        </ion-content>
+    </ion-pane>-->
+</body>
+
+</html>

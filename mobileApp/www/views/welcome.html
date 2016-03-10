@@ -1,0 +1,74 @@
+<ion-view view-title="Companies">
+<ion-content>
+   <!-- <div class="list">
+
+        <div class="item item-button-right">
+            <label class="item item-input">
+                <input type="text" placeholder="Add Company">
+                <button class="button button-positive">
+                    <i class="icon ion-plus-round"></i>
+                </button>
+            </label>
+
+        </div>
+
+
+
+    </div>-->
+  <!--<div class="item item-button-right">
+  <h5>Logged in with email: {{user.email}}</h5>
+  <h5>Role: {{user.role}}</h5>
+
+    <i class="ion-android-notifications"></i>
+
+  </div>-->
+  <div class="list">
+
+   <!-- <div class="item item-button-right">
+      Logged in with email: <b>{{user.email}}</b>
+      <button class="button button-positive">
+        <i class="icon ion-android-notifications-none"></i>
+      </button>
+
+    </div>
+    <div class="item item-button-right">
+      Role: <b>{{user.role}}</b>
+
+    </div>-->
+    <div class="item item-icon-left item-icon-right" href="#">
+      <i class="icon ion-ios-person"></i>
+      Logged in with email: <b>{{user.email}} </b>
+      <span class="badge badge-assertive">{{notifyLength.length}}</span>
+    </div>
+    <div class="item item-icon-left item-icon-right" href="#">
+      <i class="icon ion-eye"></i>
+      Role: <b>{{user.role}}</b>
+    </div>
+
+
+
+  </div>
+  <div class="card">
+
+        <div ng-click="goIntoCompany(company)" ng-repeat="company in companiesObj track by $index" ng-class="($index%2)==0?'item item-text-wrap':'item item-divider'">
+            <i class="icon ion-levels"></i> {{company.name}}
+        </div>
+
+    </div>
+    <!--<div ng-model='map'></div>-->
+    <div class="list">
+
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+                <input ng-model="company.name" type="text" placeholder="Add Company">
+            </label>
+            <button ng-click="addCompany(company)" class="button button-small">
+                <i class="icon ion-plus-round"></i>
+            </button>
+        </div>
+
+    </div>
+
+    </ion-content>
+
+    </ion-view>

@@ -1,0 +1,45 @@
+<ion-view view-title="Add Users">
+    <ion-content>
+        <div class="card">
+            <h5 class="item item-text-wrap" style="background-color: #fff7b2">Users in <strong>{{companyObj.name}}</strong></h5>
+            <div ng-repeat="company in addedUser track by $index" ng-class="($index%2)==0?'item item-text-wrap':'item item-divider'">
+                <i class="icon ion-person"></i>  {{company.name}}
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h5 class="item item-text-wrap">Products Added</h5>
+            <div class="row card" ng-repeat="prod in productArr track by $index">
+
+                <div class="col">{{prod.name}}</div>
+                <div class="col">{{prod.quantity}}</div>
+                <div class="col">{{prod.addedOn}}</div>
+            </div>
+        </div>
+
+        <div class="list">
+
+            <label class="item item-input">
+                <!--<span class="input-label">Username</span>-->
+                <input ng-model="user.name" type="text" placeholder="John">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <!--<span class="input-label">Email</span>-->
+                <input ng-model="user.email" type="text" placeholder="john@suhr.com">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <!--<span class="input-label">Password</span>-->
+                <input ng-model="user.pass" type="password" placeholder="******">
+            </label>
+            <p ng-show="existErr" style="color:#ff0000">Error: {{errTitle}}</p>
+            <button ng-click="addUser(user)" type="submit" class="button button-full button-stable">
+                ADD
+            </button>
+          <button ng-click="addProduct()" type="submit" class="button button-full button-stable">
+                Add Product
+            </button>
+
+        </div>
+</ion-content>
+    </ion-view>

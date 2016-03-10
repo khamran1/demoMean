@@ -1,0 +1,36 @@
+<ion-view view-title="Dashboard">
+    <ion-content>
+
+        <div class="card">
+            <div class="item item-text-wrap">
+                Welcome to Dashboard User: <strong>{{currentUser.name}}</strong>
+            </div>
+            <div class="item item-text-wrap">
+                Joined Company: <strong>{{userCompany.name}}</strong>
+            </div>
+        </div>
+
+
+        <!--<div class="card">
+            <h5>Products Added</h5>
+            <div ng-repeat="company in products track by $index" ng-class="($index%2)==0?'item item-text-wrap':'item item-divider'">
+                <i class="icon ion-levels"></i> {{company.name}}
+            </div>
+
+        </div>-->
+        <div class="card">
+            <h5 class="item item-text-wrap">Company Products</h5>
+            <div class="row card" ng-repeat="prod in products track by $index" ng-click="getProduct(prod)">
+
+                <div class="col">{{prod.name}}</div>
+                <div class="col">{{prod.quantity}}</div>
+                <div class="col">{{prod.addedOn}}</div>
+            </div>
+        </div>
+      <!--  <button ng-click="addProduct()" type="submit" class="button button-full button-stable">
+            Get Product
+        </button>-->
+
+    </ion-content>
+
+</ion-view>
